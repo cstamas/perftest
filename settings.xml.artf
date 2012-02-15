@@ -1,0 +1,72 @@
+<settings>
+	
+  <localRepository>./test-repository</localRepository>
+
+  <servers>
+    <server>
+      <id>nexus</id>
+      <username>admin</username>
+      <password>password</password>
+    </server>
+    <server>
+      <id>snapshots</id>
+      <username>admin</username>
+      <password>password</password>
+    </server>
+  </servers>
+
+  <proxies>
+    <proxy>
+      <id>gatling</id>
+      <active>false</active>
+      <protocol>http</protocol>
+      <host>localhost</host>
+      <port>8000</port>
+      <!-- Make all go thru gatling -->
+      <nonProxyHosts>foo</nonProxyHosts>
+    </proxy>
+  </proxies>
+
+  <mirrors>
+    <mirror>
+      <id>nexus</id>
+      <mirrorOf>external:*</mirrorOf>
+      <url>http://marvin.cservenak.net:8081/artifactory/repo</url>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <profile>
+      <id>development</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>central</id>
+          <url>http://central</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>development</activeProfile>
+  </activeProfiles>
+
+</settings>
